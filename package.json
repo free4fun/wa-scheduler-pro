@@ -1,0 +1,21 @@
+{
+  "name": "wa-scheduler-pro-v21",
+  "version": "2.1.0",
+  "description": "Local WhatsApp Web scheduler with persistent jobs, logs, watchdog, autoresponses and Playwright browser automation.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:bg": "xvfb-run -a --server-args='-screen 0 1366x768x24' node src/index.js",
+    "dev": "node --watch src/index.js",
+    "install:browsers": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "playwright": "^1.45.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WA Scheduler Pro v2.1</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>WA Scheduler Pro v2.1</h1>
+      <p>Agenda local, sesión persistente, autocierre, watchdog y autorespuestas.</p>
+    </div>
+    <div class="status-card">
+      <span id="browserDot" class="dot"></span>
+      <span id="browserStatus">Cargando...</span>
+      <button id="openBrowser">Abrir WhatsApp</button>
+      <button id="closeBrowser" class="ghost">Cerrar navegador</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <h2>Nuevo envío agendado</h2>
+      <form id="jobForm">
+        <label>Contactos o grupos <small>uno por línea; también admite coma o punto y coma</small></label>
+        <textarea name="recipients" rows="5" placeholder="Nombre exacto del contacto\nNombre exacto del grupo" required></textarea>
+
+        <label>Mensaje <small>Si subís imagen/video, este texto se envía como mensaje aparte inmediatamente después.</small></label>
+        <textarea name="message" rows="5" placeholder="Texto a enviar después de la imagen/video."></textarea>
+
+        <div class="grid2">
+          <div>
+            <label>Fecha y hora</label>
+            <input name="scheduledAtLocal" type="datetime-local" required />
+          </div>
+          <div>
+            <label>Foto/video opcional</label>
+            <input name="media" type="file" accept="image/*,video/*" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Guardar agenda</button>
+          <button type="button" id="testOpen" class="ghost">Probar apertura del primer contacto</button>
+        </div>
+      </form>
+      <p class="note">El navegador se abre automáticamente 1 minuto antes. Luego de enviar, se cierra si no hay otro mensaje agendado para el próximo minuto.</p>
+    </section>
+
+    <section class="panel">
+      <div class="section-head">
+        <h2>Agenda persistente</h2>
+        <button id="refresh" class="ghost">Actualizar</button>
+      </div>
+      <div id="jobs" class="jobs"></div>
+    </section>
+
+    <section class="panel form-panel">
+      <h2>Autorespuestas por palabra clave</h2>
+      <form id="autoReplyForm">
+        <label class="check"><input name="isGlobal" type="checkbox" /> Responder a CUALQUIER mensaje (regla global)</label>
+
+        <label id="keywordsLabel">Palabras clave <small>una por línea; también admite coma o punto y coma</small></label>
+        <textarea name="keywords" rows="3" placeholder="precio\ninfo\ncatálogo"></textarea>
+
+        <label>Texto de respuesta <small>Si adjuntás archivo, primero se envía el adjunto y luego este texto.</small></label>
+        <textarea name="responseText" rows="4" placeholder="Hola. Te paso la información..."></textarea>
+
+        <div class="grid2">
+          <div>
+            <label>Tipo de coincidencia</label>
+            <select name="matchMode">
+              <option value="contains">Contiene la palabra/frase</option>
+              <option value="word">Palabra completa</option>
+              <option value="exact">Mensaje exacto</option>
+            </select>
+          </div>
+          <div>
+            <label>Adjunto opcional</label>
+            <input name="media" type="file" />
+          </div>
+        </div>
+        <div class="actions">
+          <button type="submit">Crear regla</button>
+        </div>
+      </form>
+      <div id="autoReplies" class="jobs small-list"></div>
+      <p class="note warn">Para detectar mensajes entrantes, WhatsApp Web debe estar abierto. Si activás autorespuestas, la app mantiene el navegador abierto y puede marcar chats como leídos.</p>
+    </section>
+
+    <section class="panel settings-panel">
+      <h2>Ajustes operativos</h2>
+      <div class="settings-grid">
+        <label>Minutos de apertura previa<input id="leadMinutes" type="number" min="1" max="30" /></label>
+        <label>Reintentos máximos<input id="maxAttempts" type="number" min="1" max="5" /></label>
+        <label>Delay mínimo entre destinatarios (ms)<input id="minDelay" type="number" min="500" step="500" /></label>
+        <label>Delay máximo entre destinatarios (ms)<input id="maxDelay" type="number" min="500" step="500" /></label>
+        <label class="check"><input id="closeWhenIdle" type="checkbox" /> Cerrar navegador cuando queda sin envíos próximos</label>
+        <label class="check"><input id="autoResponderEnabled" type="checkbox" /> Activar autorespuestas</label>
+      </div>
+      <button id="saveSettings" class="ghost">Guardar ajustes</button>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="section-head">
+        <h2>Registro técnico</h2>
+        <button id="clearView" class="ghost">Limpiar vista</button>
+      </div>
+      <div id="events" class="events"></div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

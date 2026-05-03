@@ -1,0 +1,110 @@
+# =========================
+# Node.js / npm / yarn / pnpm
+# =========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.pnpm-store/
+.yarn/
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+package-lock.json.old
+yarn.lock.old
+pnpm-lock.yaml.old
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage / testing
+coverage/
+.nyc_output/
+jest-cache/
+
+# Env files
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Logs
+logs/
+*.log
+
+# =========================
+# DATA!!!!!
+# =========================
+data/browser-profile/
+data/media/*
+!data/media/.gitkeep
+data/*.json
+data/*.tmp
+
+
+# =========================
+# RPM / Linux packaging
+# =========================
+
+*.rpm
+*.srpm
+
+RPMS/
+SRPMS/
+SPECS/
+SOURCES/
+BUILD/
+BUILDROOT/
+
+.rpmmacros
+rpm/
+rpm-build/
+rpmbuild/
+
+# Archivos temporales de specs
+*.spec~
+*.spec.bak
+
+# =========================
+# OS / Editor files
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# =========================
+# Misc
+# =========================
+
+tmp/
+temp/
+.cache/
+.local/
